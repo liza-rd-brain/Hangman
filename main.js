@@ -26,7 +26,7 @@ var setupAnswerArray = function (word) {
 var answerArray = setupAnswerArray(word);
 
 var showPlayerProgress = function (answerArray) {
-    alert(answerArray.join(" "))
+    console.log(answerArray.join(" "))
 }
 
 // Переменная с количеством оставшихся букв
@@ -102,7 +102,7 @@ while (remainingLetters > 0 && attempt < 15 && attemptIncorrect < 6) {
     var getGuess = function () {
         return prompt("Угадайте букву или нажмите Отмена для выхода из игры.")
     }
-    //В guess будет записан введенный в строку alert символ
+    //В guess будет записан введенный в строку console.log символ
     var guess = getGuess()
     //если игрок нажмет кнопку «Отмена», guess примет значение null
     //Если это условие даст true, мы с помощью break выйдем из цикла while
@@ -110,11 +110,11 @@ while (remainingLetters > 0 && attempt < 15 && attemptIncorrect < 6) {
         break
     }
     else if (guess == "") {
-        alert("Вы не ввели букву!")
+        console.log("Вы не ввели букву!")
     }
     //если введена не одна буква
     else if (guess.length !== 1) {
-        alert("Пожалуйста введите только одну букву.")
+        console.log("Пожалуйста введите только одну букву.")
     }
 
     else {
@@ -148,8 +148,8 @@ while (remainingLetters > 0 && attempt < 15 && attemptIncorrect < 6) {
     }
 }
 var showAnswerAndCongratulatePlayer = function (answerArray) {
-    alert(answerArray.join(" "))
-    alert("Отлично! Было загадано слово " + word)
+    console.log(answerArray.join(" "))
+    console.log("Отлично! Было загадано слово " + word)
 }
 
 showAnswerAndCongratulatePlayer(answerArray)

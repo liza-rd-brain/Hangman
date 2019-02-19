@@ -1,17 +1,21 @@
 function Game(container) {
     this.container = container;
-
 }
 
 let gprt = Game.prototype
 gprt.CLASS_NAME = "game";
 
-
-
 gprt.render = function () {
     let gameEl = document.createElement("div");
     gameEl.className = this.CLASS_NAME;
     this.container.appendChild(gameEl)
+
+
+    let dialogBoxEl = new DialogBox().render()
+    let inputBoxEl = new InputBox().render()
+    gameEl.appendChild(dialogBoxEl)
+    gameEl.appendChild(inputBoxEl)
+
 }
 
 

@@ -1,27 +1,62 @@
 function Game(container) {
     this.container = container;
+    this.beginGame = this.beginGame.bind(this)
 }
 
 let gprt = Game.prototype
 gprt.CLASS_NAME = "game";
 
 gprt.render = function () {
-    let gameEl = document.createElement("div");
-    gameEl.className = this.CLASS_NAME;
-    this.container.appendChild(gameEl)
+    this.gameEl = document.createElement("div");
+    this.gameEl.className = this.CLASS_NAME;
+    this.container.appendChild(this.gameEl)
 
+    this.dialogBoxEl = new DialogBox(this.beginGame).render()
+    this.inputBoxEl = new InputBox().render()
+    this.gameEl.appendChild(this.dialogBoxEl)
+    this.gameEl.appendChild(this.inputBoxEl)
 
-    let dialogBoxEl = new DialogBox().render()
-    let inputBoxEl = new InputBox().render()
-    gameEl.appendChild(dialogBoxEl)
-    gameEl.appendChild(inputBoxEl)
-
+    this.createStartButton()
 }
 
 
+gprt.createStartButton = function () {
+    this.startButtonEl = document.createElement("button")
+    this.dialogBoxEl.appendChild(this.startButtonEl)
+    this.startButtonEl.className = "startButton"
+    this.startButtonEl.type = "button"
+    this.startButtonEl.innerHTML = "Начать игру"
+    this.startButtonEl.addEventListener("click", this.beginGame)
+    /* return startButtonEl */
+}
+
+// вынести кнопку в отдельный компонент?!
+// потом если мы выйдем из игры
+// вернемся на экран, где есть только кнопка начать игру
+gprt.beginGame = function () {
+    console.log("да начнется игра")
+    this.dialogBoxEl.removeChild(this.startButtonEl)
+}
+
+
+gprt = null
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
 
 
 
@@ -176,4 +211,4 @@ function makeGame() {
     }
 
     showAnswerAndCongratulatePlayer(answerArray)
-}
+} */
